@@ -26,6 +26,7 @@ let processText = (text, sender)  => {
     let match;
     match = text.match(/help/i);
     if (match) {
+    console.log('help match',match);   
         sendMessage({text:
             `You can ask me things like:
     Search account Acme
@@ -37,8 +38,10 @@ let processText = (text, sender)  => {
     }
 
     match = text.match(/search account (.*)/i);
+    console.log('Account match',match);
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
+            console.log('accounts',accounts);   
             sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
             sendMessage(formatter.formatAccounts(accounts), sender)
         });
@@ -49,7 +52,8 @@ let processText = (text, sender)  => {
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
             sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
-            sendMessage(formatter.formatAccounts(accounts), sender)
+            sendMessage(formatter.
+                        (accounts), sender)
         });
         return;
     }
