@@ -52,8 +52,7 @@ let processText = (text, sender)  => {
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
             sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
-            sendMessage(formatter.
-                        (accounts), sender)
+            sendMessage(formatter.(accounts), sender);
         });
         return;
     }
