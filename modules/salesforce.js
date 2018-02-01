@@ -16,6 +16,7 @@ let org = nforce.createConnection({
 });
 
 let login = () => {
+    console.log('login called');
     org.authenticate({username: SF_USER_NAME, password: SF_PASSWORD}, err => {
         if (err) {
             console.error("Authentication error");
@@ -27,6 +28,7 @@ let login = () => {
 };
 
 let findAccount = name => {
+    console.log('findAccount');
     return new Promise((resolve, reject) => {
         let q = "SELECT Id, Name, BillingStreet, BillingCity, BillingState, Picture_URL__c, Phone FROM Account WHERE Name LIKE '%" + name + "%' LIMIT 5";
         org.query({query: q}, (err, resp) => {
@@ -93,8 +95,9 @@ let getTopOpportunities = count => {
 };
 
 login();
-
+console.log('login');
 exports.org = org;
+console.log('findAccount');
 exports.findAccount = findAccount;
 exports.findContact = findContact;
 exports.findContactsByAccount = findContactsByAccount;
