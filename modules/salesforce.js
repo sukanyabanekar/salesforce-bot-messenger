@@ -34,6 +34,7 @@ let findAccount = name => {
                 reject("An error as occurred");
             } else if (resp.records && resp.records.length>0) {
                 let accounts = resp.records;
+                console.log(accounts);
                 resolve(accounts);
             }
         });
