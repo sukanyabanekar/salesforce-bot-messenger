@@ -33,6 +33,7 @@ let findAccount = name => {
         let q = "SELECT Id, Name, BillingStreet, BillingCity, BillingState, Picture_URL__c, Phone FROM Account WHERE Name LIKE '%" + name + "%' LIMIT 5";
         org.query({query: q}, (err, resp) => {
             if (err) {
+                console.log('findAccountError',err);
                 reject("An error as occurred");
             } else if (resp.records && resp.records.length>0) {
                 let accounts = resp.records;
