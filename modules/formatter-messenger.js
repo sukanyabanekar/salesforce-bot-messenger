@@ -19,6 +19,7 @@ let formatAccounts = accounts => {
 ]
         })
     );
+    console.log('elements*********',elements);
     return {
         "attachment": {
             "type": "template",
