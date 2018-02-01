@@ -88,6 +88,7 @@ let handlePost = (req, res) => {
         if (process.env.MAINTENANCE_MODE && ((event.message && event.message.text) || event.postback)) {
             sendMessage({text: `Sorry I'm taking a break right now.`}, sender);
         } else if (event.message && event.message.text) {
+            console.log('inside processText logs');
             processText(event.message.text, sender);
         } else if (event.postback) {
             let payload = event.postback.payload.split(",");
