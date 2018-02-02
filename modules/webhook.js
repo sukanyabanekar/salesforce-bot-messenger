@@ -23,6 +23,7 @@ let sendMessage = (message, recipient) => {
 };
 
 let processText = (text, sender)  => {
+    console.log('sender facebook user id'sender);
     let match;
     match = text.match(/help/i);
     if (match) {
