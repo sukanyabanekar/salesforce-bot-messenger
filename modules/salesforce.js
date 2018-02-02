@@ -77,19 +77,21 @@ let findContactsByAccount = accountId => {
 
 };
 
-let createBotUserAccount = acc => {
-			return new Promise((resolve, reject) => {
-			  org.insert({ sobject: acc }, function(err, resp){
-							if (err) {
-                                console.log('err',err);
-									reject("An error as occurred while creating record");
-							} else if (resp.records && resp.records.length>0) {
-								let Account = resp.records;
-                                console.log('Account created',Account);
-                    			resolve(Account);
-							}
-					   });
-			});
+
+function createBotUserAccount(acc) {
+     console.log("acc " + acc);
+return new Promise((resolve, reject) => {
+	  org.insert({ sobject: acc }, function(err, resp){
+					if (err) {
+		console.log('err',err);
+							reject("An error as occurred while creating record");
+					} else if (resp.records && resp.records.length>0) {
+						let Account = resp.records;
+		console.log('Account created',Account);
+			resolve(Account);
+					}
+			   });
+	});
 };
 
 let getTopOpportunities = count => {
