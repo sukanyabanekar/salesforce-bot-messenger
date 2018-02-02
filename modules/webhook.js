@@ -84,10 +84,21 @@ let handlePost = (req, res) => {
     let events = req.body.entry[0].messaging;
     for (let i = 0; i < events.length; i++) {
         let event = events[i];
+        console.log('event Details',event);
         let sender = event.sender.id;
         if (process.env.MAINTENANCE_MODE && ((event.message && event.message.text) || event.postback)) {
             sendMessage({text: `Sorry I'm taking a break right now.`}, sender);
         } else if (event.message && event.message.text) {
+            
+            var acc = nforce.createSObject('Account');
+            acc.set('Name', '');
+            acc.set('Phone', '800-555-2345');
+            acc.set('BotUserId__c',sender);
+            salesforce.insertAccount();
+            org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
+            if(!err) console.log('It worked!');
+            });
+            
             processText(event.message.text, sender);
         } else if (event.postback) {
             let payload = event.postback.payload.split(",");
