@@ -1,8 +1,11 @@
 "use strict";
 
+let nforce = require('nforce');
+
 let request = require('request'),
     salesforce = require('./salesforce'),
     formatter = require('./formatter-messenger');
+
 
 let sendMessage = (message, recipient) => {
     request({
