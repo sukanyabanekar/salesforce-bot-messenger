@@ -78,9 +78,9 @@ let findContactsByAccount = accountId => {
 };
 
 
-function createBotUserAccount(acc) {
-     console.log("acc " + acc);
-return new Promise((resolve, reject) => {
+let createBotUserAccount = (acc) => {
+      console.log("acc " + acc);
+	  return new Promise((resolve, reject) => {
 	  org.insert({ sobject: acc }, function(err, resp){
 					if (err) {
 		console.log('err',err);
@@ -93,6 +93,8 @@ return new Promise((resolve, reject) => {
 			   });
 	});
 };
+
+
 
 let getTopOpportunities = count => {
 
