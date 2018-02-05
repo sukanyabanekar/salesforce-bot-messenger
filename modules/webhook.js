@@ -119,7 +119,7 @@ let handlePost = (req, res) => {
 			: "";
 	
 			var acc = nforce.createSObject('Account');
-			acc.set('BotUserId__c',event.sender.id);
+			
 			acc.set('Name', Name);
 			    org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
 				console.log('resp',resp);
