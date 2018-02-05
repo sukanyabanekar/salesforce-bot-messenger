@@ -52,15 +52,12 @@ let processText = (text, sender)  => {
     match = text.match(/help/i);
     if (match) {
     console.log('help match',match);   
-        sendMessage({text:
-            `You can ask me things like:
-    Search account Acme
-    Search Acme in accounts
-    Search contact Smith
-    What are my top 3 opportunities?
-        `}, sender);
-        return;
-    }
+      return res.json({
+    speech: '',
+    displayText: 'You can ask me things like Search account Acme Search Acme in accounts Search contact Smith What are my top opportunities,
+    source: "webhook-echo-sample"
+    });
+   }
 
     match = text.match(/search account (.*)/i);
     console.log('Account match',match);
@@ -68,10 +65,12 @@ let processText = (text, sender)  => {
         salesforce.findAccount(match[1]).then(accounts => {
             console.log('accounts',accounts);   
             sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
-            sendMessage(formatter.formatAccounts(accounts), sender)
-        });
-        return;
-    }
+               return res.json({
+    speech: formatter.formatAccounts(accounts),
+    displayText: formatter.formatAccounts(accounts),
+    source: "webhook-echo-sample"
+    });
+}
 
     match = text.match(/search (.*) in accounts/i);
     if (match) {
