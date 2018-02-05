@@ -132,6 +132,12 @@ let handlePost = (req, res) => {
 			});
 	
 	
+    return res.json({
+    speech: 'Bot user created succesfully'+Name,
+    displayText: 'Bot user created succesfully'+Name,
+    source: "webhook-echo-sample"
+    });
+
 	
 	
 	
@@ -168,8 +174,9 @@ let handlePost = (req, res) => {
 					sendMessage({text: `I'm sorry to hear that. I closed the opportunity "${payload[2]}" as "Close Lost".`}, sender);
 				}
 			}
+			res.sendStatus(200);
 		} */
-		res.sendStatus(200);
+		
 	}; 
 
 
