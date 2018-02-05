@@ -1,6 +1,7 @@
 "use strict";
 
-let formatAccounts = accounts => {
+let formatAccounts = accounts => accountId => {
+    console.log('accountId*********parameter',accountId);
     let elements = [];
     accounts.forEach(account =>
         elements.push({
@@ -10,7 +11,7 @@ let formatAccounts = accounts => {
             "buttons": [{
                 "type":"postback",
                 "title":"View Contacts",
-                "payload": "view_contacts," + account.getId() + "," + account.get("Name")
+                "payload": "/viewContact," + account.getId()
             },{
                 "type": "web_url",
                 "url": "https://login.salesforce.com/" + account.getId(),
