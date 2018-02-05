@@ -49,6 +49,7 @@ let sendMessage = (message, recipient) => {
 let processText = (text, sender)  => {
     console.log('sender facebook user id',sender);
     let match;
+    let accountId;	
     match = text.match(/help/i);
     if (match) {
     console.log('help match',match);   
@@ -66,9 +67,11 @@ let processText = (text, sender)  => {
     console.log('Account match',match);
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
+	    console.log('AccountId******',accounts[0].id);
+	    accountId =accounts[0].id;
             console.log('accounts',accounts);   
             sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
-            sendMessage(formatter.formatAccounts(accounts), sender)
+            sendMessage(formatter.formatAccounts(accounts,accountId), sender)
         });
         return;
     }
@@ -99,6 +102,19 @@ let processText = (text, sender)  => {
         });
         return;
     }
+	
+	 match = text.match(/viewContact/i);
+	 console.log('View Contact matched',match);
+	    if (match) {
+		salesforce.getTopOpportunities(match[1]).then(opportunities => {
+		    sendMessage({text: `Here are your top ${match[1]} opportunities:`}, sender);
+		    sendMessage(formatter.formatOpportunities(opportunities), sender)
+		});
+		return;
+	    }	
+	
+	
+	
 };
 
 let handleGet = (req, res) => {
