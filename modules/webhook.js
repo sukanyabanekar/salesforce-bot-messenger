@@ -16,7 +16,7 @@ restService.use(
 restService.use(bodyParser.json());
 restService.post("/echo", function(req, res) {
 console.log('echoechoecho reatched ******');
-        let handlePost = (req, res) => {
+       /* let handlePost = (req, res) => { */
             let events = req.body.entry[0].messaging;
             for (let i = 0; i < events.length; i++) {
                 let event = events[i];
@@ -52,7 +52,7 @@ console.log('echoechoecho reatched ******');
                 }
             }
             res.sendStatus(200);
-        };
+       /* }; */
 
 
 
