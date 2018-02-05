@@ -109,8 +109,28 @@ let handleGet = (req, res) => {
 };
 
 
+
 let handlePost = (req, res) => { 
-		let events = req.body.entry[0].messaging;
+			var Name =
+			req.body.result &&
+			req.body.result.parameters &&
+			req.body.result.parameters.echoText
+			? req.body.result.parameters.echoText
+			: "";
+	
+			var acc = nforce.createSObject('Account');
+			acc.set('BotUserId__c',event.sender.id);
+			acc.set('Name', Name);
+			    org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
+				console.log('resp',resp);
+					if(!err) console.log('It worked!');
+			});
+	
+	
+	
+	
+	
+	/*	let events = req.body.entry[0].messaging;
 		for (let i = 0; i < events.length; i++) {
 			let event = events[i];
 			console.log('Event*****Details',event);
@@ -123,13 +143,13 @@ let handlePost = (req, res) => {
 			var acc = nforce.createSObject('Account');
 			acc.set('BotUserId__c',event.sender.id);
 			acc.set('Name', 'BotUserAccount');
-		   /* org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
+		    org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
 				console.log('resp',resp);
 					if(!err) console.log('It worked!');
 			});
 			console.log('Account**** object created',acc);
 				console.log('Inside processText',event.message.text);
-				*/
+				
 			  salesforce.createBotUserAccount(acc);  
 				processText(event.message.text, sender);
 			} else if (event.postback) {
@@ -143,10 +163,9 @@ let handlePost = (req, res) => {
 					sendMessage({text: `I'm sorry to hear that. I closed the opportunity "${payload[2]}" as "Close Lost".`}, sender);
 				}
 			}
-		}
+		} */
 		res.sendStatus(200);
 	}; 
-
 
 
 exports.handleGet = handleGet;
