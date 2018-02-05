@@ -8,7 +8,7 @@ app.set('port', process.env.PORT || 5000);
 app.use(bodyParser.json());
 
 app.get('/webhook', webhook.handleGet);
-app.post('/echo', webhook.handlePost);
+app.post('/echo', webhook.handlePost );
 console.log('echoDetails***********');
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
