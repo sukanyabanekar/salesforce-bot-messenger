@@ -121,7 +121,7 @@ let handlePost = (req, res) => {
 			var acc = nforce.createSObject('Account');
 			
 			acc.set('Name', Name);
-			    org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
+			    salesforce.org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
 				console.log('resp',resp);
 					if(!err) console.log('It worked!');
 			});
