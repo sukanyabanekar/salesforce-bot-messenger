@@ -113,7 +113,8 @@ let handleGet = (req, res) => {
 let handlePost = (req, res) => { 
 	console.log('User Request From Api.ai*****',req);
 	console.log('user Sesstion Id******',req.body.sessionId);
-	console.log('user sender id body data***',req.body.originalRequest.data);
+	console.log('user sender id body data***',req.body.originalRequest.data.sender.id);
+	                var sender = req.body.originalRequest.data.sender.id;
 			var Name =
 			req.body.result &&
 			req.body.result.parameters &&
@@ -123,17 +124,17 @@ let handlePost = (req, res) => {
 	console.log('Name',Name);
 	console.log('oauth Token APi.Ai',salesforce.org.oauth);
 	
-			var acc = nforce.createSObject('Account');
+		/*	var acc = nforce.createSObject('Account');
 			
 			acc.set('Name', Name);
 			acc.set('BotUserId__c',req.body.sessionId);
 			    salesforce.org.insert({ sobject: acc, oauth: salesforce.org.oauth }, function(err, resp){
 				console.log('resp',resp);
 					if(!err) console.log('It worked!');
-			});
+			}); */
 	
 	
-	
+	processText('/'+Name,sender);
 	
 	
 	/*	let events = req.body.entry[0].messaging;
