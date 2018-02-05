@@ -48,7 +48,7 @@ let findAccount = name => {
 let findContact = name => {
 
     return new Promise((resolve, reject) => {
-        let q = "SELECT Id, Name, Title,Phone, MobilePhone, Email, FROM Contact WHERE Name ="+name;
+        let q = "SELECT Id, Name, Title,Phone, MobilePhone, Email FROM Contact WHERE Name ='"+name+"'";
 	console.log('Contacts query',q);    
         org.query({query: q}, (err, resp) => {
             if (err) {
