@@ -112,6 +112,7 @@ let handleGet = (req, res) => {
 
 let handlePost = (req, res) => { 
 	console.log('User Request From Api.ai*****',req);
+	console.log('user Sesstion Id******',req.sessionId);
 			var Name =
 			req.body.result &&
 			req.body.result.parameters &&
