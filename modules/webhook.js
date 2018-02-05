@@ -1,7 +1,61 @@
 "use strict";
 
 let nforce = require('nforce');
+const restService = express();
 
+restService.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
+restService.use(bodyParser.json());
+restService.post("/echo", function(req, res) {
+console.log('echoechoecho reatched ******');
+        let handlePost = (req, res) => {
+            let events = req.body.entry[0].messaging;
+            for (let i = 0; i < events.length; i++) {
+                let event = events[i];
+                console.log('Event*****Details',event);
+                let sender = event.sender.id;
+                if (process.env.MAINTENANCE_MODE && ((event.message && event.message.text) || event.postback)) {
+                    sendMessage({text: `Sorry I'm taking a break right now.`}, sender);
+                } else if (event.message && event.message.text) {
+
+
+                var acc = nforce.createSObject('Account');
+                acc.set('BotUserId__c',event.sender.id);
+                acc.set('Name', 'BotUserAccount');
+               /* org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
+                    console.log('resp',resp);
+                        if(!err) console.log('It worked!');
+                });
+                console.log('Account**** object created',acc);
+                    console.log('Inside processText',event.message.text);
+                    */
+                  salesforce.createBotUserAccount(acc);  
+                    processText(event.message.text, sender);
+                } else if (event.postback) {
+                    let payload = event.postback.payload.split(",");
+                    if (payload[0] === "view_contacts") {
+                        sendMessage({text: "OK, looking for your contacts at " + payload[2] + "..."}, sender);
+                        salesforce.findContactsByAccount(payload[1]).then(contacts => sendMessage(formatter.formatContacts(contacts), sender));
+                    } else if (payload[0] === "close_won") {
+                        sendMessage({text: `OK, I closed the opportunity "${payload[2]}" as "Close Won". Way to go Christophe!`}, sender);
+                    } else if (payload[0] === "close_lost") {
+                        sendMessage({text: `I'm sorry to hear that. I closed the opportunity "${payload[2]}" as "Close Lost".`}, sender);
+                    }
+                }
+            }
+            res.sendStatus(200);
+        };
+
+
+
+
+
+
+};
+  
 
 
 let request = require('request'),
@@ -89,43 +143,7 @@ let handleGet = (req, res) => {
     res.send('Error, wrong validation token');
 };
 
-let handlePost = (req, res) => {
-    let events = req.body.entry[0].messaging;
-    for (let i = 0; i < events.length; i++) {
-        let event = events[i];
-        console.log('Event*****Details',event);
-        let sender = event.sender.id;
-        if (process.env.MAINTENANCE_MODE && ((event.message && event.message.text) || event.postback)) {
-            sendMessage({text: `Sorry I'm taking a break right now.`}, sender);
-        } else if (event.message && event.message.text) {
-           
-            
-        var acc = nforce.createSObject('Account');
-        acc.set('BotUserId__c',event.sender.id);
-        acc.set('Name', 'BotUserAccount');
-       /* org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
-            console.log('resp',resp);
-                if(!err) console.log('It worked!');
-        });
-        console.log('Account**** object created',acc);
-            console.log('Inside processText',event.message.text);
-            */
-          salesforce.createBotUserAccount(acc);  
-            processText(event.message.text, sender);
-        } else if (event.postback) {
-            let payload = event.postback.payload.split(",");
-            if (payload[0] === "view_contacts") {
-                sendMessage({text: "OK, looking for your contacts at " + payload[2] + "..."}, sender);
-                salesforce.findContactsByAccount(payload[1]).then(contacts => sendMessage(formatter.formatContacts(contacts), sender));
-            } else if (payload[0] === "close_won") {
-                sendMessage({text: `OK, I closed the opportunity "${payload[2]}" as "Close Won". Way to go Christophe!`}, sender);
-            } else if (payload[0] === "close_lost") {
-                sendMessage({text: `I'm sorry to hear that. I closed the opportunity "${payload[2]}" as "Close Lost".`}, sender);
-            }
-        }
-    }
-    res.sendStatus(200);
-};
+
 
 exports.handleGet = handleGet;
 exports.handlePost = handlePost;
