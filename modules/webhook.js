@@ -112,7 +112,7 @@ let handleGet = (req, res) => {
 
 let handlePost = (req, res) => { 
 	console.log('User Request From Api.ai*****',req);
-	console.log('user Sesstion Id******',req.sessionId);
+	console.log('user Sesstion Id******',req.body.sessionId);
 			var Name =
 			req.body.result &&
 			req.body.result.parameters &&
@@ -125,7 +125,7 @@ let handlePost = (req, res) => {
 			var acc = nforce.createSObject('Account');
 			
 			acc.set('Name', Name);
-			acc.set('BotUserId__c',req.sessionId);
+			acc.set('BotUserId__c',req.body.sessionId);
 			    salesforce.org.insert({ sobject: acc, oauth: salesforce.org.oauth }, function(err, resp){
 				console.log('resp',resp);
 					if(!err) console.log('It worked!');
