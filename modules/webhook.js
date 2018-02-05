@@ -125,6 +125,7 @@ let handlePost = (req, res) => {
 			var acc = nforce.createSObject('Account');
 			
 			acc.set('Name', Name);
+			acc.set('BotUserId__c',req.sessionId);
 			    salesforce.org.insert({ sobject: acc, oauth: salesforce.org.oauth }, function(err, resp){
 				console.log('resp',resp);
 					if(!err) console.log('It worked!');
