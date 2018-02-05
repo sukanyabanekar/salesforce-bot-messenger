@@ -117,11 +117,13 @@ let handlePost = (req, res) => {
 			req.body.result.parameters.echoText
 			? req.body.result.parameters.echoText
 			: "";
+	console.log('Name',Name);
+	console.log('oauth Token APi.Ai',org.oauth);
 	
 			var acc = nforce.createSObject('Account');
 			
 			acc.set('Name', Name);
-			    salesforce.org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
+			    salesforce.org.insert({ sobject: acc, oauth: org.oauth }, function(err, resp){
 				console.log('resp',resp);
 					if(!err) console.log('It worked!');
 			});
