@@ -113,6 +113,8 @@ let handleGet = (req, res) => {
 let handlePost = (req, res) => { 
 	console.log('User Request From Api.ai*****',req);
 	console.log('user Sesstion Id******',req.body.sessionId);
+	console.log('user sender id*****',req.body.id);
+	var sender = req.body.id;
 			var Name =
 			req.body.result &&
 			req.body.result.parameters &&
@@ -130,14 +132,14 @@ let handlePost = (req, res) => {
 				console.log('resp',resp);
 					if(!err) console.log('It worked!');
 			});
-	processText('/'+Name, sender);
+	processText('/help', sender);
 	
-    return res.json({
+  /*  return res.json({
     speech: 'Bot user created succesfully'+Name,
     displayText: 'Bot user created succesfully'+Name,
     source: "webhook-echo-sample"
     });
-
+*/
 	
 	
 	
