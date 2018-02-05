@@ -122,3 +122,4 @@ exports.findAccount = findAccount;
 exports.findContact = findContact;
 exports.findContactsByAccount = findContactsByAccount;
 exports.getTopOpportunities = getTopOpportunities;
+exports.createBotUserAccount = createBotUserAccount;
