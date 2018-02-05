@@ -48,12 +48,15 @@ let findAccount = name => {
 let findContact = name => {
 
     return new Promise((resolve, reject) => {
-        let q = "SELECT Id, Name, Title, Account.Name, Phone, MobilePhone, Email, FROM Contact WHERE Name LIKE '%" + name + "%' LIMIT 5";
+        let q = "SELECT Id, Name, Title,Phone, MobilePhone, Email, FROM Contact WHERE Name ="+name;
+	console.log('Contacts query',q);    
         org.query({query: q}, (err, resp) => {
             if (err) {
+		console.log('findAccountError',err);
                 reject("An error as occurred");
             } else if (resp.records && resp.records.length>0) {
                 let contacts = resp.records;
+		console.log(contacts);   
                 resolve(contacts);
             }
         });
