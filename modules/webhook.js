@@ -130,7 +130,7 @@ let handlePost = (req, res) => {
 				console.log('resp',resp);
 					if(!err) console.log('It worked!');
 			});
-	
+	processText('/'+Name, sender);
 	
     return res.json({
     speech: 'Bot user created succesfully'+Name,
