@@ -36,7 +36,7 @@ let formatContacts = contacts => {
     contacts.forEach(contact => {
         elements.push({
             title: contact.get("Name"),
-            subtitle: contact.get("Title") + " at " + contact.get("Account").Name + " · " + contact.get("MobilePhone"),
+            subtitle: contact.get("Title") + " with " + contact.get("MobilePhone"),
             "image_url": contact.get("Picture_URL__c"),
             "buttons": [
                 {
