@@ -114,12 +114,14 @@ let handlePost = (req, res) => {
         var acc = nforce.createSObject('Account');
         acc.set('BotUserId__c',event.sender.id);
         acc.set('Name', 'BotUserAccount');
-        org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
+       /* org.insert({ sobject: acc, oauth: oauth }, function(err, resp){
             console.log('resp',resp);
                 if(!err) console.log('It worked!');
         });
         console.log('Account**** object created',acc);
             console.log('Inside processText',event.message.text);
+            */
+          salesforce.createBotUserAccount(acc);  
             processText(event.message.text, sender);
         } else if (event.postback) {
             let payload = event.postback.payload.split(",");
