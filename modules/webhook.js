@@ -4,7 +4,7 @@ let nforce = require('nforce');
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const nodesaleforce = require("node-salesforce-connection");
+
 
 const restService = express();
 
