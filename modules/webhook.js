@@ -52,12 +52,15 @@ let processText = (text, sender)  => {
     match = text.match(/help/i);
     if (match) {
     console.log('help match',match);   
-      return res.json({
-    speech: '',
-    displayText: 'You can ask me things like Search account Acme Search Acme in accounts Search contact Smith What are my top opportunities,
-    source: "webhook-echo-sample"
-    });
-   }
+        sendMessage({text:
+            `You can ask me things like:
+    Search account Acme
+    Search Acme in accounts
+    Search contact Smith
+    What are my top 3 opportunities?
+        `}, sender);
+        return;
+    }
 
     match = text.match(/search account (.*)/i);
     console.log('Account match',match);
@@ -65,12 +68,10 @@ let processText = (text, sender)  => {
         salesforce.findAccount(match[1]).then(accounts => {
             console.log('accounts',accounts);   
             sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
-               return res.json({
-    speech: formatter.formatAccounts(accounts),
-    displayText: formatter.formatAccounts(accounts),
-    source: "webhook-echo-sample"
-    });
-}
+            sendMessage(formatter.formatAccounts(accounts), sender)
+        });
+        return;
+    }
 
     match = text.match(/search (.*) in accounts/i);
     if (match) {
@@ -112,9 +113,7 @@ let handleGet = (req, res) => {
 let handlePost = (req, res) => { 
 	console.log('User Request From Api.ai*****',req);
 	console.log('user Sesstion Id******',req.body.sessionId);
-	console.log('user sender id form data*****',req.body.originalRequest.data);
-	
-	var sender = req.body.id;
+	console.log('user sender id body data***',req.body.originalRequest.data);
 			var Name =
 			req.body.result &&
 			req.body.result.parameters &&
@@ -132,14 +131,8 @@ let handlePost = (req, res) => {
 				console.log('resp',resp);
 					if(!err) console.log('It worked!');
 			});
-	processText('/help', sender);
 	
-  /*  return res.json({
-    speech: 'Bot user created succesfully'+Name,
-    displayText: 'Bot user created succesfully'+Name,
-    source: "webhook-echo-sample"
-    });
-*/
+	
 	
 	
 	
@@ -176,9 +169,8 @@ let handlePost = (req, res) => {
 					sendMessage({text: `I'm sorry to hear that. I closed the opportunity "${payload[2]}" as "Close Lost".`}, sender);
 				}
 			}
-			res.sendStatus(200);
 		} */
-		
+		res.sendStatus(200);
 	}; 
 
 
