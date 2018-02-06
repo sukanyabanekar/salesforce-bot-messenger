@@ -68,6 +68,9 @@ let processText = (text, sender)  => {
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
 	    console.log('accounts',accounts);   
+	    console.log('accounts[0]****',accounts[0]);	
+	    console.log('accounts[0]****Fields',accounts[0]._fileds);	
+            console.log('accounts[0]*****id',accounts[0]._fields.id);			
 	    let record = accounts.Record;
             console.log('******accounts.Record******',accounts.Record);			
 	    let fields = record[0]._fields;
