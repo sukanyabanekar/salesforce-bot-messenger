@@ -129,7 +129,7 @@ function getAccountRelatedContacts(accounts,accountId){
             }
         }
     };
-}
+};
 
 exports.formatAccounts = formatAccounts;
 exports.formatContacts = formatContacts;
