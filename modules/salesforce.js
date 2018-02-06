@@ -67,7 +67,7 @@ let findContact = name => {
 let findContactsByAccount = accountId => {
     console.log('accountId Details',accountId);
     return new Promise((resolve, reject) => {
-        let q = "SELECT Id, Name, Title, Account.Name, Phone, MobilePhone, Email, FROM Contact WHERE Account.Id = '" + accountId + "' LIMIT 5";
+        let q = "SELECT Id, Name, Title,Phone, MobilePhone,AccountId,Email FROM Contact WHERE AccountId='" + accountId + "' LIMIT 5";
         console.log('Query Details',q);
 	    org.query({query: q}, (err, resp) => {
             if (err) {
