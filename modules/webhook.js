@@ -69,7 +69,7 @@ let processText = (text, sender)  => {
         salesforce.findAccount(match[1]).then(accounts => {
             let accountId = accounts[0]._fields.id;		
 	    sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
-            sendMessage(formatter.getAccountRelatedContacts(accounts,accountId), sender)
+            sendMessage(formatter.findAccount(accounts,accountId), sender)
         });
         return;
     }
@@ -104,15 +104,12 @@ let processText = (text, sender)  => {
 	 match = text.match(/viewContact/i);
 	 console.log('View Contact matched',match);
 	    if (match) {
-		salesforce.getTopOpportunities(match[1]).then(opportunities => {
-		    sendMessage({text: `Here are your top ${match[1]} opportunities:`}, sender);
-		    sendMessage(formatter.formatOpportunities(opportunities), sender)
-		});
+		    let contacts = salesforce.getAccountRelatedContacts(accountId);
+		    console.log('contacts****'contacts);
+		    sendMessage({text: `Here are your account related contacts`}, sender);
+		    sendMessage(formatter.formatContacts(contacts), sender)
 		return;
-	    }	
-	
-	
-	
+	    }		
 };
 
 let handleGet = (req, res) => {
