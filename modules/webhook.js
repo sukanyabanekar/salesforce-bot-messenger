@@ -68,6 +68,7 @@ let processText = (text, sender)  => {
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
 	    console.log('AccountId******',accounts[0].id);
+	    console.log('******AccountId******',accounts.Record[0]._fields.id);			
 	    accountId =accounts[0].id;
             console.log('accounts',accounts);   
             sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
