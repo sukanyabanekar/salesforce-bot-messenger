@@ -120,7 +120,7 @@ let getTopOpportunities = count => {
 
 function getAccountRelatedContacts(accountId) {
 
-	let accountIdFiteen = accountId.substr(0,accountIdEight.length - 3);
+	let accountIdFiteen = accountId.substr(0,accountId.length - 3);
 	console.log('*******accountId*******');
 	return new Promise((resolve, reject) => {
         let q ="SELECT Id, Name, Title,Phone, MobilePhone,AccountId,Email FROM Contact WHERE AccountId="+accountIdFiteen;
