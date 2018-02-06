@@ -65,14 +65,18 @@ let findContact = name => {
 };
 
 let findContactsByAccount = accountId => {
-
+    console.log('accountId Details',accountId);
     return new Promise((resolve, reject) => {
         let q = "SELECT Id, Name, Title, Account.Name, Phone, MobilePhone, Email, FROM Contact WHERE Account.Id = '" + accountId + "' LIMIT 5";
-        org.query({query: q}, (err, resp) => {
+        console.log('Query Details',q);
+	    org.query({query: q}, (err, resp) => {
             if (err) {
+		console.log('Error ',err);
                 reject("An error as occurred");
             } else if (resp.records && resp.records.length>0) {
+		
                 let contacts = resp.records;
+		console.log('contacts*******',contacts);
                 resolve(contacts);
             }
         });
