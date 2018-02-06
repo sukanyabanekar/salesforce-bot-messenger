@@ -1,7 +1,7 @@
 "use strict";
 
 let formatAccounts = accounts => {
-   
+    console.log('formatAccount',accounts);
     let elements = [];
     accounts.forEach(account =>
         elements.push({
