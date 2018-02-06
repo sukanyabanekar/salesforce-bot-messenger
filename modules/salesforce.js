@@ -122,7 +122,7 @@ function getAccountRelatedContacts(accountId) {
 
 	let accountIdFiteen = accountId.substr(0,accountId.length - 3);
 	console.log('*******accountId*******');
-	return new Promise((resolve, reject) => {
+	
         let q ="SELECT Id, Name, Title,Phone, MobilePhone,AccountId,Email FROM Contact WHERE AccountId='"+accountIdFiteen+"'";
         console.log('Contacts query',q);    
         org.query({query: q}, (err, resp) => {
@@ -131,11 +131,12 @@ function getAccountRelatedContacts(accountId) {
                 reject("An error as occurred");
             } else if (resp.records && resp.records.length>0) {
                 let contacts = resp.records;
-		console.log('contact records **********',contacts);   
-                return contacts;
+				console.log('contact records **********',contacts);   
+               
             }
+	   return contacts;
         });
-    });
+   
 }
 
 
