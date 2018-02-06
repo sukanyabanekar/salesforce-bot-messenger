@@ -107,7 +107,7 @@ let processText = (text, sender)  => {
 		 let accId = text.split(" ");
 		 console.log('Account Id',accId);
 		 console.log('Account Id',accId[1]);
-		 let accountIdFiteen = accId[1].substr(0,accId.length - 3);
+		 let accountIdFiteen = accId[1].substr(0,accId[1].length - 3);
 		 console.log('Account accountIdFiteen',accountIdFiteen); 
 		 salesforce.findContactsByAccount(accountIdFiteen).then(contacts => {
 			sendMessage({text: `Here are your top coantacts :`}, sender);
