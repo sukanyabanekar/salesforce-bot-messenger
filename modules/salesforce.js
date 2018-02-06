@@ -131,8 +131,8 @@ function getAccountRelatedContacts(accountId) {
                 reject("An error as occurred");
             } else if (resp.records && resp.records.length>0) {
                 let contacts = resp.records;
-		console.log(contacts);   
-                resolve(contacts);
+		console.log('contact records **********'contacts);   
+                return contacts;
             }
         });
     });
