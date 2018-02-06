@@ -147,3 +147,4 @@ exports.findContact = findContact;
 exports.findContactsByAccount = findContactsByAccount;
 exports.getTopOpportunities = getTopOpportunities;
 exports.createBotUserAccount = createBotUserAccount;
+exports.getAccountRelatedContacts = getAccountRelatedContacts;
