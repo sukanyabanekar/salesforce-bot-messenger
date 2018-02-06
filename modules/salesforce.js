@@ -123,7 +123,7 @@ function getAccountRelatedContacts(accountId) {
 	let accountIdFiteen = accountId.substr(0,accountId.length - 3);
 	console.log('*******accountId*******');
 	return new Promise((resolve, reject) => {
-        let q ="SELECT Id, Name, Title,Phone, MobilePhone,AccountId,Email FROM Contact WHERE AccountId="+accountIdFiteen;
+        let q ="SELECT Id, Name, Title,Phone, MobilePhone,AccountId,Email FROM Contact WHERE AccountId='"+accountIdFiteen+"'";
         console.log('Contacts query',q);    
         org.query({query: q}, (err, resp) => {
             if (err) {
