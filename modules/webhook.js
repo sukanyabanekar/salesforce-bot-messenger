@@ -67,19 +67,8 @@ let processText = (text, sender)  => {
     console.log('Account match',match);
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
-	    console.log('accounts',accounts);   
-	    console.log('accounts[0]****',accounts[0]);	
-	    console.log('accounts[0]****Fields',accounts[0]._fileds);	
-            console.log('accounts[0]*****id',accounts[0]._fields.id);			
-	    let record = accounts.Record;
-            console.log('******accounts.Record******',accounts.Record);			
-	    let fields = record[0]._fields;
-	    console.log('******record[0]._fields******',record[0]._fields);	
-	    let accId =	record[0]._fields.id;	
-	    console.log('******accId******',record[0]._fields.id);	
-	    accountId =accounts[0].id;
-           
-            sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
+            let accountId = accounts[0]._fields.id;		
+	    sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
             sendMessage(formatter.getAccountRelatedContacts(accounts,accountId), sender)
         });
         return;
