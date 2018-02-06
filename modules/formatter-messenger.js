@@ -33,6 +33,7 @@ let formatAccounts = accounts => {
 };
 
 let formatContacts = contacts => {
+    console.log('Contact to format',contacts);
     let elements = [];
     contacts.forEach(contact => {
         elements.push({
