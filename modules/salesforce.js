@@ -117,6 +117,27 @@ let getTopOpportunities = count => {
 
 };
 
+
+function getAccountRelatedContacts(accountId) {
+	console.log('*******accountId*******');
+	return new Promise((resolve, reject) => {
+        let q ="SELECT Id, Name, Title,Phone, MobilePhone,AccountId,Email FROM Contact WHERE AccountId="+accountId;
+        console.log('Contacts query',q);    
+        org.query({query: q}, (err, resp) => {
+            if (err) {
+		console.log('findAccountError',err);
+                reject("An error as occurred");
+            } else if (resp.records && resp.records.length>0) {
+                let contacts = resp.records;
+		console.log(contacts);   
+                resolve(contacts);
+            }
+        });
+    });
+}
+
+
+
 login();
 console.log('login');
 exports.org = org;
