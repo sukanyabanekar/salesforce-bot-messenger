@@ -103,8 +103,10 @@ let processText = (text, sender)  => {
 	
 	 match = text.match(/viewContact/i);
 	 console.log('View Contact matched',match);
-	    if (match) {
-		    let contacts = salesforce.getAccountRelatedContacts(accountId);
+   	    if (match) {
+	 	    let accId = text.split(" ");
+		    console.log('Account Id',accId);
+		    let contacts = salesforce.getAccountRelatedContacts(accId);
 		    console.log('contacts****',contacts);
 		    sendMessage({text: `Here are your account related contacts`}, sender);
 		    sendMessage(formatter.formatContacts(contacts), sender)
