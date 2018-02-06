@@ -1,5 +1,5 @@
 "use strict";
-/*
+
 let formatAccounts = accounts => accountId => {
     console.log('accountId*********parameter',accountId);
     let elements = [];
@@ -31,7 +31,7 @@ let formatAccounts = accounts => accountId => {
         }
     };
 };
-*/
+
 let formatContacts = contacts => {
     let elements = [];
     contacts.forEach(contact => {
