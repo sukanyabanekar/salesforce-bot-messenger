@@ -105,7 +105,7 @@ let processText = (text, sender)  => {
 	 console.log('View Contact matched',match);
 	    if (match) {
 		    let contacts = salesforce.getAccountRelatedContacts(accountId);
-		    console.log('contacts****'contacts);
+		    console.log('contacts****',contacts);
 		    sendMessage({text: `Here are your account related contacts`}, sender);
 		    sendMessage(formatter.formatContacts(contacts), sender)
 		return;
