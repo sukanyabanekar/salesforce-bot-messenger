@@ -71,7 +71,7 @@ let processText = (text, sender)  => {
 	    accountId =accounts[0].id;
             console.log('accounts',accounts);   
             sendMessage({text: `Here are the accounts I found matching "${match[1]}":`}, sender);
-            sendMessage(formatter.formatAccounts(accounts,accountId), sender)
+            sendMessage(formatter.getAccountRelatedContacts(accounts,accountId), sender)
         });
         return;
     }
