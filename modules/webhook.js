@@ -67,7 +67,7 @@ let processText = (text, sender)  => {
     console.log('Account match',match);
     if (match) {
         salesforce.findAccount(match[1]).then(accounts => {
-	    console.log('AccountId******',accounts[0].id);
+	  
 	    console.log('******AccountId******',accounts.Record[0]._fields.id);			
 	    accountId =accounts[0].id;
             console.log('accounts',accounts);   
