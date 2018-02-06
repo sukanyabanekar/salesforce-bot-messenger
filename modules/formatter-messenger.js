@@ -1,5 +1,5 @@
 "use strict";
-
+/*
 let formatAccounts = accounts => accountId => {
     console.log('accountId*********parameter',accountId);
     let elements = [];
@@ -31,7 +31,7 @@ let formatAccounts = accounts => accountId => {
         }
     };
 };
-
+*/
 let formatContacts = contacts => {
     let elements = [];
     contacts.forEach(contact => {
@@ -99,6 +99,39 @@ let formatOpportunities = opportunities => {
     };
 };
 
+function getAccountRelatedContacts(accounts,accountId){
+    console.log('accountId*********parameter',accountId);
+    let elements = [];
+    accounts.forEach(account =>
+        elements.push({
+            title: account.get("Name"),
+            subtitle: account.get("BillingStreet") + ", " + account.get("BillingCity") + " " + account.get("BillingState") + " · " + account.get("Phone"),
+            "image_url": account.get("Picture_URL__c"),
+            "buttons": [{
+                "type":"postback",
+                "title":"View Contacts",
+                "payload": "/viewContact," + account.getId()
+            },{
+                "type": "web_url",
+                "url": "https://login.salesforce.com/" + account.getId(),
+                "title": "Open in Salesforce"
+            },
+]
+        })
+    );
+    console.log('elements*********',elements);
+    return {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": elements
+            }
+        }
+    };
+}
+
 exports.formatAccounts = formatAccounts;
 exports.formatContacts = formatContacts;
 exports.formatOpportunities = formatOpportunities;
+exports.getAccountRelatedContacts = getAccountRelatedContacts;
