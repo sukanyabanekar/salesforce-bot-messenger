@@ -119,7 +119,7 @@ let getTopOpportunities = count => {
 
 
 function getAccountRelatedContacts(accountId) {
-
+	let contacts;
 	let accountIdFiteen = accountId.substr(0,accountId.length - 3);
 	console.log('*******accountId*******');
 	
@@ -132,10 +132,10 @@ function getAccountRelatedContacts(accountId) {
             } else if (resp.records && resp.records.length>0) {
                 let contacts = resp.records;
 	        console.log('contact records **********',contacts);   
-                return contacts;
+                
             }
-	  
-        });
+	});
+	return contacts;
    
 }
 
