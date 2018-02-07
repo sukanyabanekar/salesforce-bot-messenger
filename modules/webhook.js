@@ -140,6 +140,12 @@ let handlePost = (req, res) => {
 	console.log('Name',Name);
 	console.log('oauth Token APi.Ai',salesforce.org.oauth);
 	
+		return res.json({
+		speech: 'Text',
+		displayText: 'Text',
+		source: "webhook-echo-sample"
+		});
+	
 		/*	var acc = nforce.createSObject('Account');
 			
 			acc.set('Name', Name);
@@ -150,7 +156,7 @@ let handlePost = (req, res) => {
 			}); */
 	
 	
-	processText('/'+Name,sender);
+	/* processText('/'+Name,sender); */
 	
 	
 	/*	let events = req.body.entry[0].messaging;
