@@ -108,7 +108,7 @@ let getTopOpportunities = count => {
     count = count || 5;
 
     return new Promise((resolve, reject) => {
-        let q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate, Account.Name FROM Opportunity WHERE isClosed=false ORDER BY amount DESC LIMIT " + count;
+        let q = "SELECT Id, Name, Amount, Probability, StageName, CloseDate FROM Opportunity WHERE isClosed=false ORDER BY amount DESC LIMIT " + count;
         console.log('OpportunitiesQureis*******',q); 	    
         org.query({query: q}, (err, resp) => {
             if (err) {
