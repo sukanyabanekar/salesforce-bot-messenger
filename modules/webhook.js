@@ -132,12 +132,20 @@ let handlePost = (req, res) => {
 	console.log('user Sesstion Id******',req.body.sessionId);
 	console.log('user sender id body data***',req.body.originalRequest.data.sender.id);
 	                var sender = req.body.originalRequest.data.sender.id;
-			var Name =
+	
+	var Name =
 			req.body.result &&
 			req.body.result.parameters &&
 			req.body.result.parameters.echoText
 			? req.body.result.parameters.echoText
 			: "";
+	
+	
+	var parameters =
+			req.body.result &&
+			req.body.result.parameters;
+			
+	console.log('******parameters******',parameters);
 	console.log('Name',Name);
 	console.log('oauth Token APi.Ai',salesforce.org.oauth);
 	
@@ -157,7 +165,7 @@ let handlePost = (req, res) => {
 			}); */
 	
 	
-	 processText('/'+Name,sender); 
+	/* processText('/'+Name,sender);  */
 	
 	
 	/*	let events = req.body.entry[0].messaging;
