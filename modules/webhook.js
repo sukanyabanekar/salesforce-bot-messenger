@@ -130,6 +130,24 @@ let handleGet = (req, res) => {
 let handlePost = (req, res) => { 
 	console.log('User Request From Api.ai*****',req);
 	console.log('user Sesstion Id******',req.body.sessionId);
+	
+	   curl -X POST -H "Content-Type: application/json" -d '{
+	  "persistent_menu":[
+	    {
+	    "locale":"default",
+	    "composer_input_disabled":false,
+	    "call_to_actions":[
+		{
+		  "type":"web_url",
+		  "title":"Einstellungen",
+		  "url":"https://www.thinqloud.com",
+		  "webview_height_ratio":"full"
+		}
+	      ]
+	    }
+	  ]
+	}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD"
+
 	console.log('user sender id body data***',req.body.originalRequest.data.sender.id);
 	                var sender = req.body.originalRequest.data.sender.id;
 	
@@ -148,6 +166,8 @@ let handlePost = (req, res) => {
 	console.log('******parameters******',parameters);
 	console.log('Name',Name);
 	console.log('oauth Token APi.Ai',salesforce.org.oauth);
+	
+
 	
 		/* return res.json({
 		speech: 'Text',
