@@ -132,16 +132,16 @@ let handlePost = (req, res) => {
 	console.log('user Sesstion Id******',req.body.sessionId);
 	
 	   curl -X POST -H "Content-Type: application/json" -d '{
-	  "persistent_menu":[
+	  persistent_menu:[
 	    {
-	    "locale":"default",
-	    "composer_input_disabled":false,
-	    "call_to_actions":[
+	    locale : "default",
+	    composer_input_disabled :false,
+	    call_to_actions :[
 		{
-		  "type":"web_url",
-		  "title":"Einstellungen",
-		  "url":"https://www.thinqloud.com",
-		  "webview_height_ratio":"full"
+		  type :"web_url",
+		  title :"Einstellungen",
+		  url :"https://www.thinqloud.com",
+		  webview_height_ratio :"full"
 		}
 	      ]
 	    }
