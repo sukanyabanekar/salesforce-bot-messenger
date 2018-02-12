@@ -130,26 +130,8 @@ let handleGet = (req, res) => {
 let handlePost = (req, res) => { 
 	console.log('User Request From Api.ai*****',req);
 	console.log('user Sesstion Id******',req.body.sessionId);
-	
-	   curl -X POST -H "Content-Type: application/json" -d '{
-	  persistent_menu:[
-	    {
-	    locale : "default",
-	    composer_input_disabled :false,
-	    call_to_actions :[
-		{
-		  type :"web_url",
-		  title :"Einstellungen",
-		  url :"https://www.thinqloud.com",
-		  webview_height_ratio :"full"
-		}
-	      ]
-	    }
-	  ]
-	}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD"
-
 	console.log('user sender id body data***',req.body.originalRequest.data.sender.id);
-	                var sender = req.body.originalRequest.data.sender.id;
+	var sender = req.body.originalRequest.data.sender.id;
 	
 	var Name =
 			req.body.result &&
@@ -167,8 +149,26 @@ let handlePost = (req, res) => {
 	console.log('Name',Name);
 	console.log('oauth Token APi.Ai',salesforce.org.oauth);
 	
-
 	
+		app.get('/facebook-search/:id', (req, res) => {
+
+			// you need permission for most of these fields
+			const userFieldSet = 'id, name, about, email, accounts, link, is_verified, significant_other, relationship_status, website, picture, photos, feed';
+
+			const options = {
+			method: 'GET',
+			uri: `https://graph.facebook.com/v2.8/${req.params.id}`,
+			qs: {
+			access_token: EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD,
+			fields: userFieldSet
+			}
+			};
+			request(options)
+			.then(fbRes => {
+			res.json(fbRes);
+	                console.log('FacebookResponse*****************************',fbRes);
+			})
+		})
 		/* return res.json({
 		speech: 'Text',
 		displayText: 'Text',
