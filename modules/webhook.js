@@ -55,7 +55,7 @@ let getUserDetails = (message, recipient) => {
 	
     request({
 	
-	url: 'https://graph.facebook.com/v2.6/recipient/?fields='+fields+'&access_token='+'EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD',
+	url: 'https://graph.facebook.com/v2.6/'+recipient+'/?fields='+fields+'&access_token='+'EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD',
         qs: {access_token: process.env.FB_PAGE_TOKEN},
         method: 'POST'
     }, (error, response) => {
