@@ -51,8 +51,10 @@ let sendMessage = (message, recipient) => {
 let getUserDetails = (message, recipient) => {
     
     console.log('Get User Details********');
+    let fields ='first_name,last_name,profile_pic,locale,timezone,gender';
+	
     request({
-	const fields ='first_name,last_name,profile_pic,locale,timezone,gender';
+	
 	url: 'https://graph.facebook.com/v2.6/recipient/?fields='+fields+'&access_token='+'EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD',
         qs: {access_token: process.env.FB_PAGE_TOKEN},
         method: 'POST'
