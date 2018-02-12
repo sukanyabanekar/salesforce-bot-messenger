@@ -46,6 +46,27 @@ let sendMessage = (message, recipient) => {
     });
 };
 
+
+
+let getUserDetails = (message, recipient) => {
+    
+    console.log('Get User Details********');
+    request({
+	const fields ='first_name,last_name,profile_pic,locale,timezone,gender';
+	url: 'https://graph.facebook.com/v2.6/recipient/?fields='+fields+'&access_token='+'EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD',
+        qs: {access_token: process.env.FB_PAGE_TOKEN},
+        method: 'POST'
+    }, (error, response) => {
+	   console.log('response**********',response);
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+    });
+};
+
+
 let processText = (text, sender)  => {
     console.log('sender facebook user id',sender);
     let match;
@@ -150,25 +171,10 @@ let handlePost = (req, res) => {
 	console.log('oauth Token APi.Ai',salesforce.org.oauth);
 	
 	
-		app.get('/facebook-search/:id', (req, res) => {
-
-			// you need permission for most of these fields
-			const userFieldSet = 'id, name, about, email, accounts, link, is_verified, significant_other, relationship_status, website, picture, photos, feed';
-
-			const options = {
-			method: 'GET',
-			uri: `https://graph.facebook.com/v2.8/${req.params.id}`,
-			qs: {
-			access_token: EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD,
-			fields: userFieldSet
-			}
-			};
-			request(options)
-			.then(fbRes => {
-			res.json(fbRes);
-	                console.log('FacebookResponse*****************************',fbRes);
-			})
-		})
+	getUserDetails('user',sender);
+	
+	
+	
 		/* return res.json({
 		speech: 'Text',
 		displayText: 'Text',
