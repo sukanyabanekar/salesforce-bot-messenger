@@ -50,15 +50,15 @@ let sendMessage = (message, recipient) => {
 
 let getUserDetails = (message, recipient) => {
 	
-    let fields ='?fields=first_name,last_name,profile_pic,locale,timezone,gender';	
-	
+    let fields ='first_name,last_name,profile_pic,locale,timezone,gender';	
+    console.log('Get User Details********');	
     request({
-        url: 'https://graph.facebook.com/v2.6/me/message',
+        url: 'https://graph.facebook.com/v2.6/me/fields',
         qs: {access_token: process.env.FB_PAGE_TOKEN},
         method: 'POST',
         json: {
             recipient: {id: recipient},
-            message: fields
+            fields: fields
         }
     }, (error, response) => {
 	console.log('Get User Details response********',response);    
