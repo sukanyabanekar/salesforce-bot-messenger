@@ -30,7 +30,7 @@ let request = require('request'),
 
 let sendMessage = (message, recipient) => {
     request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
+        url: 'https://graph.facebook.com/v2.6/'+recipient+'/messages',
         qs: {access_token: process.env.FB_PAGE_TOKEN},
         method: 'POST',
         json: {
