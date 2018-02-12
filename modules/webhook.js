@@ -49,22 +49,25 @@ let sendMessage = (message, recipient) => {
 
 
 let getUserDetails = (message, recipient) => {
-    
-    console.log('Get User Details********');
-    let fields ='first_name,last_name,profile_pic,locale,timezone,gender';
+	
+    let fields ='?fields=first_name,last_name,profile_pic,locale,timezone,gender';	
 	
     request({
-	
-	url: 'https://graph.facebook.com/v2.6/'+recipient+'/?fields='+fields+'&access_token='+'EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD',
-        method: 'POST'
+        url: 'https://graph.facebook.com/v2.6/me/message',
+        qs: {access_token: process.env.FB_PAGE_TOKEN},
+        method: 'POST',
+        json: {
+            recipient: {id: recipient},
+            message: fields
+        }
     }, (error, response) => {
-	   console.log('response**********',response);
         if (error) {
             console.log('Error sending message: ', error);
         } else if (response.body.error) {
             console.log('Error: ', response.body.error);
         }
-    });
+    });		
+    console.log('Get User Details********');
 };
 
 
