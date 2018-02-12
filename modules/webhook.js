@@ -61,10 +61,11 @@ let getUserDetails = (message, recipient) => {
             message: fields
         }
     }, (error, response) => {
+	console.log('Get User Details response********',response);    
         if (error) {
-            console.log('Error sending message: ', error);
+            console.log('Error sending message:********** ', error);
         } else if (response.body.error) {
-            console.log('Error: ', response.body.error);
+            console.log('Error: *********', response.body.error);
         }
     });		
     console.log('Get User Details********');
