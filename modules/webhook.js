@@ -49,26 +49,17 @@ let sendMessage = (message, recipient) => {
 
 
 let getUserDetails = (message, recipient) => {
-console.log('getUserDetails*********');
-let https = require('https');
-console.log('https*********',https);	
-
-https.get('https://graph.facebook.com/v2.6/1579154208820112/?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD', (resp) => {
-let data = '';
-resp.on('data', (chunk) => {
-data += chunk;
-});
-
-console.log('Data return*****',data);	
-	
-resp.on('end', () => {
-console.log('Response data ****************User profile details',JSON.parse(data).explanation);
-});
-
-}).on("error", (err) => {
-console.log("Error: " + err.message);
-});
-
+request({
+	url: 'https://graph.facebook.com/v2.6/1579154208820112/?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD',
+        method: 'GET'
+    }, (error, response) => {
+	console.log('TestResponseDemo***************',response);
+        if (error) {
+            console.log('Error sending message: ********', error);
+        } else if (response.body.error) {
+            console.log('Error: **********', response.body.error);
+        }
+    });	
 };
 
 
