@@ -54,6 +54,7 @@ request({
         method: 'GET'
     }, (error, response) => {
 	console.log('TestResponseDemo***************',response);
+	console.log('TestResponseDemo******body******body***',response.body);
         if (error) {
             console.log('Error sending message: ********', error);
         } else if (response.body.error) {
