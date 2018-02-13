@@ -172,6 +172,7 @@ let handlePost = (req, res) => {
 	
 	
 	getUserDetails('user',sender);
+	console.log('User Name Details******',Name);
 	
 	
 	
