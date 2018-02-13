@@ -58,6 +58,9 @@ let data = '';
 resp.on('data', (chunk) => {
 data += chunk;
 });
+
+console.log('Data return*****',data);	
+	
 resp.on('end', () => {
 console.log('Response data ****************User profile details',JSON.parse(data).explanation);
 });
