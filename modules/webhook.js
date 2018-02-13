@@ -54,8 +54,8 @@ request({
 	url: 'https://graph.facebook.com/v2.6/1579154208820112/?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD',
         method: 'GET'
     }, (error, response) => {
-	const firstName = response.first_name;
-	const last_name = response.last_name;
+	let firstName = response.first_name;
+	let last_name = response.last_name;
 	name = firstName +' '+ last_name;
 	console.log('name************',);
 	if (error) {
