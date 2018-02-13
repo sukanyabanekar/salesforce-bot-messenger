@@ -49,26 +49,23 @@ let sendMessage = (message, recipient) => {
 
 
 let getUserDetails = (message, recipient) => {
-	
-    let fields ='first_name,last_name,profile_pic,locale,timezone,gender';	
-    console.log('Get User Details********');	
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/fields',
-        qs: {access_token: process.env.FB_PAGE_TOKEN},
-        method: 'POST',
-        json: {
-            recipient: {id: recipient},
-            fields: fields
-        }
-    }, (error, response) => {
-	console.log('Get User Details response********',response);    
-        if (error) {
-            console.log('Error sending message:********** ', error);
-        } else if (response.body.error) {
-            console.log('Error: *********', response.body.error);
-        }
-    });		
-    console.log('Get User Details********');
+console.log('getUserDetails*********');
+let https = require('https');
+console.log('https*********',https);	
+
+https.get('https://graph.facebook.com/v2.6/1579154208820112/?fields=first_name,last_name,profile_pic,locale,timezone,gender&access_token=EAACsqFPeZBroBALfdQcMoW48JPqZAdCU0M9mSpaDwGxYhOhZACeGKiBYMBx0qgVAankOkSrBcIsFRfXknJQZBegRQKLWVXKLyyw0jZCmnaFjNG2cKD44aBW5gPwyuajW9nFZBD2NUy3foWbR3uxBf49OoDnZCHq337jJuGTQ3GT0AZDZD', (resp) => {
+let data = '';
+resp.on('data', (chunk) => {
+data += chunk;
+});
+resp.on('end', () => {
+console.log(JSON.parse(data).explanation);
+});
+
+}).on("error", (err) => {
+console.log("Error: " + err.message);
+});
+
 };
 
 
