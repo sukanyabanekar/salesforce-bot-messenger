@@ -57,8 +57,8 @@ request({
 	console.log('response************',response);
 	console.log('response.body************',response.body);
 	console.log('response.body.first_name************',response.body.first_name);
-	let firstName = response.body.first_name;
-	let last_name = response.body.last_name;
+	let firstName = response.body['first_name'];
+	let last_name = response.body['last_name'];
 	UserName = firstName +' '+ last_name;
 	console.log('name************',UserName);
 	if (error) {
