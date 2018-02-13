@@ -4,7 +4,7 @@ let nforce = require('nforce');
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const name;
+let UserName;
 
 
 const restService = express();
@@ -56,8 +56,8 @@ request({
     }, (error, response) => {
 	let firstName = response.first_name;
 	let last_name = response.last_name;
-	name = firstName +' '+ last_name;
-	console.log('name************',);
+	UserName = firstName +' '+ last_name;
+	console.log('name************',UserName);
 	if (error) {
             console.log('Error sending message: ********', error);
         } else if (response.body.error) {
@@ -172,7 +172,7 @@ let handlePost = (req, res) => {
 	
 	
 	getUserDetails('user',sender);
-	console.log('User Name Details******',Name);
+	console.log('User Name Details******',UserName);
 	
 	
 	
