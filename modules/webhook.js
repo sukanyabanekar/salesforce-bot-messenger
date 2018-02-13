@@ -59,7 +59,7 @@ resp.on('data', (chunk) => {
 data += chunk;
 });
 resp.on('end', () => {
-console.log(JSON.parse(data).explanation);
+console.log('Response data ****************User profile details',JSON.parse(data).explanation);
 });
 
 }).on("error", (err) => {
