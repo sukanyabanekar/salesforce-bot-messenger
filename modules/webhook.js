@@ -236,7 +236,5 @@ let handlePost = (req, res) => {
 		} */
 		res.sendStatus(200);
 	}; 
-
-
 exports.handleGet = handleGet;
 exports.handlePost = handlePost;
